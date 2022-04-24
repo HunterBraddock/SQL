@@ -1,0 +1,35 @@
+create table guitars (id INTEGER PRIMARY KEY, make TEXT, model TEXT, year INTEGER, condition TEXT, price INTEGER);
+
+insert into guitars values (1, "Fender", "American Standard Telecaster", 2016, "Good", 850.00);
+insert into guitars values (2, "Fender", "Highway-One Stratocaster", 2004, "Fair", 750.00);
+insert into guitars values (3, "Epiphone", "SG G-400", 2016, "Good", 350.00);
+insert into guitars values (4, "D'Angelico", "Premiere DC", 2018, "Great", 270.00);
+insert into guitars values (5, "Gibson", "SG", 1997,"Fair", 800.00);
+insert into guitars values (6, "Gibson", "Les Paul Tribute", 2013,"Great", 850.00);
+insert into guitars values (7, "Fender", "Standard Stratocaster", 2009,"Good", 500.00);
+insert into guitars values (8, "Squier", "Jazzmaster Bass", 2016,"Good", 350.00);
+insert into guitars values (9, "PRS", "SE Custom 24", 2016,"Great", 600.00);
+insert into guitars values (10, "First Act", "Star", 2003,"Poor", 125.00);
+insert into guitars values (11, "Taylor", "Big Baby", 2018,"Great", 100.00);
+insert into guitars values (12, "Epiphone", "Banjo", 1985,"Good", 1500.00);
+insert into guitars values (13, "Epiphone", "SG G-310", 2006,"Poor", 250.00);
+insert into guitars values (14, "Washburn", "Traveler", 1992,"Good", 350.00);
+insert into guitars values (15, "Fender", "American Ultra Stratocaster", 2021,"Brand New", 2125.00);
+
+select * from guitars order by price;
+
+select SUM(price) from guitars;
+
+select * from guitars where price > 500 order by price desc;
+
+select make, SUM(price) from guitars group by make;
+
+select make, COUNT(make) from guitars group by make;
+
+select * from guitars where condition = "Great";
+
+select make, model, condition from guitars where condition = "Good";
+
+select make, condition, COUNT(make), SUM(price) from guitars where condition = "Good" group by make;
+
+select condition, COUNT(condition) from guitars group by condition order by condition;
