@@ -1,0 +1,18 @@
+CREATE TABLE facebook (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, sex TEXT, location TEXT);
+
+INSERT INTO facebook (name, age, sex, location) VALUES ("Hunter Braddock", 30, "Male", "Chalmette, LA");
+INSERT INTO facebook (name, age, sex, location) VALUES ("Kali Albright", 25, "Female", "Chalmette, LA");
+INSERT INTO facebook (name, age, sex, location) VALUES ("Bradi Lee", 28, "Female", "Meridian, MS");
+INSERT INTO facebook (name, age, sex, location) VALUES ("Lillia Stephens", 25, "Female", "Meridian, MS");
+INSERT INTO facebook (name, age, sex, location) VALUES ("Ken Albright", 55, "Male", "Pearlington, MS");
+
+SELECT * FROM facebook;
+
+UPDATE facebook SET name = "Kali Braddock" WHERE name = "Kali Albright";
+UPDATE facebook SET location = "Mandeville, LA" WHERE location = "Chalmette, LA";
+
+SELECT * FROM facebook;
+
+DELETE FROM facebook WHERE name = "Ken Albright";
+
+SELECT * FROM facebook;
