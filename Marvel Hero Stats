@@ -1,0 +1,134 @@
+CREATE TABLE marvels (ID INTEGER PRIMARY KEY,
+    name TEXT,
+    popularity INTEGER,
+    alignment TEXT,
+    gender TEXT, 
+    height_m NUMERIC,
+    weight_kg NUMERIC,
+    hometown TEXT,
+    intelligence INTEGER,
+    strength INTEGER,
+    speed INTEGER,
+    durability INTEGER,
+    energy_Projection INTEGER,
+    fighting_Skills INTEGER);
+    
+INSERT INTO marvels VALUES(1, "Spider Man", 1, "Good", "Male", 1.78, 75.75, "USA", 4, 4, 3, 3, 1, 4); 
+INSERT INTO marvels VALUES(2, "Iron Man", 20, "Neutral", "Male", 1.98, 102.58, "USA", 6, 6, 5, 6, 6, 4); 
+INSERT INTO marvels VALUES(3, "Hulk", 18, "Neutral", "Male", 2.44, 635.29, "USA", 1, 7, 3, 7, 5, 4); 
+INSERT INTO marvels VALUES(4, "Wolverine", 3, "Good", "Male", 1.6, 88.46, "Canada", 2, 4, 2, 4, 1, 7);
+INSERT INTO marvels VALUES(5, "Thor", 5, "Good", "Male", 1.98, 290.3, "Asgard", 2, 7, 7, 6, 6, 4);
+INSERT INTO marvels VALUES(6, "Green Goblin", 91, "Bad", "Male", 1.93, 174.63, "USA", 4, 4, 3, 4, 3, 3);
+INSERT INTO marvels VALUES(7, "Magneto", 11, "Neutral", "Male", 1.88, 86.18, "Germany", 6, 3, 5, 4, 6, 4);
+INSERT INTO marvels VALUES(8, "Thanos", 47, "Bad", "Male", 2.01, 446.79, "Titan", 6, 7, 7, 6, 6, 4);
+INSERT INTO marvels VALUES(9, "Loki", 32, "Bad", "Male", 1.93, 238.14, "Jotunheim", 5, 5, 7, 6, 6, 3);
+INSERT INTO marvels VALUES(10, "Doctor Doom", 19, "Bad", "Male", 2.01, 188.24, "Latveria", 6, 4, 5, 6, 6, 4);
+INSERT INTO marvels VALUES(11, "Jean Grey", 8, "Good", "Female", 1.68, 52.16, "USA", 3, 2, 7, 7, 7, 4);
+INSERT INTO marvels VALUES(12, "Rogue", 4, "Good", "Female", 1.73, 54.43, "USA", 7, 7, 7, 7, 7, 7);
+INSERT INTO marvels VALUES(13, "Storm", 2, "Good", "Female", 1.80, 66, "Kenya", 2, 2, 3, 2, 5, 4);
+INSERT INTO marvels VALUES(14, "Nightcrawler", 6, "Good", "Male", 1.75, 73, "Germany", 3, 2, 7, 2, 1, 3);
+INSERT INTO marvels VALUES(15, "Gambit", 7, "Good", "Male", 1.88, 81, "EUA", 2, 2, 2, 2, 2, 4);
+INSERT INTO marvels VALUES(16, "Captain America", 9, "Good", "Male", 1.88, 108, "EUA", 3, 3, 2, 3, 1, 6);
+INSERT INTO marvels VALUES(17, "Cyclops", 10, "Good", "Male", 1.90, 88, "EUA", 3, 2, 2, 2, 5, 4);
+INSERT INTO marvels VALUES(18, "Emma Frost", 12, "Neutral", "Female", 1.78, 65, "EUA", 4, 4, 2, 5, 5, 3);
+INSERT INTO marvels VALUES(19, "Kitty Pryde", 13, "Good", "Female", 1.68, 50, "EUA", 4, 2, 2, 3, 1, 5);
+INSERT INTO marvels VALUES(20, "Daredevil", 14, "Good", "Male", 1.83, 91, "EUA", 3, 3, 2, 2, 4, 5);
+INSERT INTO marvels VALUES(21, "Punisher", 50, "Neutral", "Male", 1.85, 91, "EUA", 3, 3, 2, 2, 1, 6);
+INSERT INTO marvels VALUES(22, "Silver Surfer", 33, "Good", "Male", 1.93, 102, "Zenn-La", 3, 7, 7, 6, 7, 2);
+INSERT INTO marvels VALUES(23, "Ghost Rider", 86, "Good", "Male", 1.88, 99, "EUA", 2, 4, 3, 5, 4, 2);
+INSERT INTO marvels VALUES(24, "Venon", 78, "Neutral", "Male", 1.90, 118, "EUA", 3, 4, 2, 6, 1, 4);
+INSERT INTO marvels VALUES(25, "Juggernaut", 76, "Neutral", "Male", 2.87, 862, "EUA", 2, 7, 2, 7, 1, 4);
+INSERT INTO marvels VALUES(26, "Professor X", 58, "Good", "Male", 1.83, 86, "EUA", 5, 2, 2, 2, 5, 3);
+
+SELECT * FROM marvels;
+
+SELECT * FROM marvels ORDER BY popularity;
+
+SELECT name, alignment
+FROM marvels
+WHERE alignment = "Good"
+ORDER BY popularity;
+
+SELECT name, alignment
+FROM marvels
+WHERE alignment = "Good"
+ORDER BY strength;
+
+SELECT name, alignment
+FROM marvels
+WHERE alignment = "Neutral"
+ORDER BY popularity;
+
+SELECT name, alignment, strength
+FROM marvels
+WHERE alignment = "Neutral"
+ORDER BY strength;
+
+SELECT name, alignment, strength
+FROM marvels
+WHERE alignment = "Good"
+ORDER BY strength desc;
+
+SELECT name,
+    CASE
+        WHEN ROUND((intelligence + strength + speed + durability + energy_Projection + fighting_Skills)/6) > 5 THEN "S Teir"
+        WHEN ROUND((intelligence + strength + speed + durability + energy_Projection + fighting_Skills)/6) > 4 THEN "A Teir"
+        WHEN ROUND((intelligence + strength + speed + durability + energy_Projection + fighting_Skills)/6) > 3 THEN "B Teir"
+        ELSE "C Teir"
+    END AS "hero_grade"
+FROM marvels
+ORDER BY hero_grade;
+        
+SELECT name,
+    CASE
+        WHEN ROUND((intelligence + strength + speed + durability + energy_Projection + fighting_Skills)/6) > 5 THEN "S Teir"
+        WHEN ROUND((intelligence + strength + speed + durability + energy_Projection + fighting_Skills)/6) > 4 THEN "A Teir"
+        WHEN ROUND((intelligence + strength + speed + durability + energy_Projection + fighting_Skills)/6) > 3 THEN "B Teir"
+        ELSE "C Teir"
+    END AS "hero_grade"
+FROM marvels
+WHERE hero_grade = "B Teir";
+
+Select name, ROUND((intelligence + strength + speed + durability + energy_Projection + fighting_Skills)/6) as "hero_average",
+CASE
+        WHEN ROUND((intelligence + strength + speed + durability + energy_Projection + fighting_Skills)/6) > 5 THEN "S Teir"
+        WHEN ROUND((intelligence + strength + speed + durability + energy_Projection + fighting_Skills)/6) > 4 THEN "A Teir"
+        WHEN ROUND((intelligence + strength + speed + durability + energy_Projection + fighting_Skills)/6) > 3 THEN "B Teir"
+        ELSE "C Teir"
+    END AS "hero_grade"
+from marvels
+order by "hero_average" desc;
+
+select name, hometown from marvels;
+
+select name, MAX(strength), MIN(intelligence)
+from marvels;
+
+select name, MAX(intelligence) from marvels;
+
+select name, intelligence from marvels;
+
+select name, MIN(weight_kg) from marvels;
+
+select name, ROUND(height_m * 3.28084, 1) as "height_ft" , ROUND(weight_kg * 2.2046226218, 1) as "weight_lbs", speed
+from marvels ;
+
+select alignment, ROUND(AVG(height_m * 3.28084), 1) as "avg_height", ROUND(AVG(weight_kg * 2.2046226218), 1) as "avg_weight", ROUND(AVG(intelligence), 1) as "avg_intel", ROUND(AVG(speed), 1) as "avg_speed", ROUND(AVG(durability), 1) as "avg_dur", ROUND(AVG(energy_Projection), 1) as "avg_energy", ROUND(AVG(fighting_Skills), 1) as "avg_fight" from marvels where gender = "Male" group by alignment;
+
+select name, MIN(ROUND(weight_kg * 2.2046226218,1)) as "min_weight" from marvels where gender = "Male" group by alignment;
+
+select alignment, ROUND(AVG(height_m * 3.28084), 1) as "avg_height", ROUND(AVG(weight_kg * 2.2046226218), 1) as "avg_weight", ROUND(AVG(intelligence), 1) as "avg_intel", ROUND(AVG(speed), 1) as "avg_speed", ROUND(AVG(durability), 1) as "avg_dur", ROUND(AVG(energy_Projection), 1) as "avg_energy", ROUND(AVG(fighting_Skills), 1) as "avg_fight" from marvels where gender = "Female" group by alignment;
+
+select hometown, ROUND(AVG(height_m * 3.28084), 1) as "avg_height", ROUND(AVG(weight_kg * 2.2046226218), 1) as "avg_weight", ROUND(AVG(intelligence), 1) as "avg_intel", ROUND(AVG(speed), 1) as "avg_speed", ROUND(AVG(durability), 1) as "avg_dur", ROUND(AVG(energy_Projection), 1) as "avg_energy", ROUND(AVG(fighting_Skills), 1) as "avg_fight" from marvels group by hometown;
+
+select * from marvels where fighting_skills >5 and intelligence < 6;
+
+select name, fighting_skills from marvels where fighting_Skills IN(5, 6, 7) order by fighting_skills;
+
+select alignment, ROUND(AVG(fighting_Skills),1) as "Fight_Skill" from marvels group by alignment;
+
+select alignment, COUNT(name) as total_heroes from marvels group by alignment having total_heroes > 1 order by total_heroes desc;
+
+select alignment, COUNT(name) as total_usa_heroes from marvels where hometown = "EUA" or hometown = "USA" group by alignment;
+
+select hometown, count(name) from marvels group by hometown;
