@@ -1,0 +1,70 @@
+CREATE TABLE celebrities (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    age INTEGER,
+    gender TEXT);
+    
+INSERT INTO celebrities (fullname, age, gender) VALUES ("Ryan Reynolds", 45, "male");
+INSERT INTO celebrities (fullname, age, gender) VALUES ("Blake Lively", 34, "female");
+INSERT INTO celebrities (fullname, age, gender) VALUES ("Brad Pitt", 58, "male");
+INSERT INTO celebrities (fullname, age, gender) VALUES ("Angelina Jolie", 46, "female");
+INSERT INTO celebrities (fullname, age, gender) VALUES ("John Krasinski", 42, "male");
+INSERT INTO celebrities (fullname, age, gender) VALUES ("Emily Blunt", 39, "female");
+
+CREATE table movies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    film_title TEXT);
+    
+INSERT INTO movies (person_id, film_title) VALUES (1, "Waiting");
+INSERT INTO movies (person_id, film_title) VALUES (1, "Deadpool");
+INSERT INTO movies (person_id, film_title) VALUES (1, "Just Friends");
+INSERT INTO movies (person_id, film_title) VALUES (2, "Accepted");
+INSERT INTO movies (person_id, film_title) VALUES (2, "Savages");
+INSERT INTO movies (person_id, film_title) VALUES (2, "The Town");
+INSERT INTO movies (person_id, film_title) VALUES (3, "Se7en");
+INSERT INTO movies (person_id, film_title) VALUES (3, "Inglorious Bastards");
+INSERT INTO movies (person_id, film_title) VALUES (3, "The Curious Case of Benjamin Button");
+INSERT INTO movies (person_id, film_title) VALUES (4, "Wanted");
+INSERT INTO movies (person_id, film_title) VALUES (4, "Lara Croft: Tomb Raider");
+INSERT INTO movies (person_id, film_title) VALUES (4, "Maleficent");
+INSERT INTO movies (person_id, film_title) VALUES (5, "Jarhead");
+INSERT INTO movies (person_id, film_title) VALUES (5, "Something Borrowed");
+INSERT INTO movies (person_id, film_title) VALUES (5, "Monsters University");
+INSERT INTO movies (person_id, film_title) VALUES (6, "Looper");
+INSERT INTO movies (person_id, film_title) VALUES (6, "A Quiet Place");
+INSERT INTO movies (person_id, film_title) VALUES (6, "Jungle Cruise");
+
+CREATE table spouses (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person1_id INTEGER,
+    person2_id INTEGER);
+    
+INSERT INTO spouses (person1_id, person2_id) VALUES (1,2);
+INSERT INTO spouses (person1_id, person2_id) VALUES (3,4);
+INSERT INTO spouses (person1_id, person2_id) VALUES (5,6);
+
+SELECT c.fullname as "Actor Name", m.film_title as "Films"
+    FROM celebrities c
+    JOIN movies m
+    ON c.id = m.person_id;
+    
+SELECT c.fullname as "Actor Name", COUNT(m.film_title) as "Film Appearences"
+    FROM celebrities c
+    JOIN movies m
+    ON c.id = m.person_id
+    GROUP BY c.fullname;
+    
+SELECT ca.fullname as "Actor Name", cb.fullname as "Spouse's Name"
+    FROM celebrities ca
+    JOIN spouses s
+    ON ca.id = s.person1_id
+    JOIN celebrities cb
+    ON cb.id = s.person2_id;
+    
+SELECT ca.fullname as "Actor Name", ca.age as "Actor's Age", cb.fullname as "Spouse's Name", cb.age as "Spouse's Age"
+    FROM celebrities ca
+    JOIN spouses s
+    ON ca.id = s.person1_id
+    JOIN celebrities cb
+    ON cb.id = s.person2_id;
